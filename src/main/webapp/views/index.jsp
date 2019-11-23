@@ -16,6 +16,8 @@
         section {
             width: 100%;
             height: 100%;
+            overflow: hidden;
+            display: flex;
         }
 
         ul {
@@ -94,6 +96,37 @@
             display: inline-block;
         }
 
+        .left-first {
+            width: 40%;
+            padding-top: 240px;
+        }
+
+        .left-first p {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        .left-first a {
+            display: block;
+            width: 44%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+            color: #999;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 30px auto;
+            cursor: pointer;
+        }
+
+        .left-first a:hover {
+            color: #1976D2;
+            border: 1px solid #1976D2;
+        }
+
         .left {
             width: 60%;
             background: #1976D2;
@@ -102,7 +135,11 @@
         }
 
         .right {
-            width: 40%;
+            width: 0;
+        }
+
+        .left-first {
+            height: 100%;
         }
 
         .left, .right {
@@ -137,6 +174,11 @@
 </head>
 <body>
 <section>
+    <div class="left-first">
+        <p>Choose your role ?</p>
+        <a href="#" class="admin-role">Admin</a>
+        <a href="<%=request.getContextPath()%>/common/visit">Common</a>
+    </div>
     <div class="left">
         <p class="sys-title"><img class="iconImg" src="<%=request.getContextPath()%>/images/icon.jpg">marposs system</p>
     </div>
@@ -148,7 +190,7 @@
             <li><label for="password">Password</label><input type="password" id="password" name="password"/></li>
             <li><span id="lgBtn">Login</span></li>
             <%--<li><a class="toLogin" href="<%=request.getContextPath()%>/user/toRegister">Register</a></li>--%>
-            <li><a class="toLogin" href="<%=request.getContextPath()%>/common/visit">Without Login</a></li>
+            <%--<li><a class="toLogin" href="<%=request.getContextPath()%>/common/visit">Without Login</a></li>--%>
         </ul>
     </div>
 </section>
@@ -189,6 +231,13 @@
                 $('#lgBtn').click();
             }
         }
+    });
+
+    $('.admin-role').on('click', function () {
+        $('.left-first').animate({
+            width: 0
+        }, 500)
+
     });
 
     function setMsg(msg) {
