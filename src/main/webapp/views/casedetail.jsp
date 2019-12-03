@@ -85,7 +85,7 @@
         .mask img {
             margin: auto;
             position: relative;
-            top: 100px;
+            top: 50px;
         }
         .mask {
             width: 100%;
@@ -209,6 +209,7 @@
     });
     function showImg() {
         $('.mask').show();
+
     }
 </script>
 </body>

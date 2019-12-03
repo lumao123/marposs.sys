@@ -13,7 +13,7 @@
             padding: 0;
         }
 
-        section {
+        .section {
             width: 100%;
             height: 100%;
             overflow: hidden;
@@ -173,7 +173,7 @@
     </style>
 </head>
 <body>
-<section>
+<div class="section">
     <div class="left-first">
         <p>Choose your role ?</p>
         <a href="#" class="admin-role">Admin</a>
@@ -193,7 +193,7 @@
             <%--<li><a class="toLogin" href="<%=request.getContextPath()%>/common/visit">Without Login</a></li>--%>
         </ul>
     </div>
-</section>
+</div>
 </body>
 <script>
     var basePath = '<%=request.getContextPath()%>';
