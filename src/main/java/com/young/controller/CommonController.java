@@ -1,5 +1,6 @@
 package com.young.controller;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,6 +44,7 @@ public class CommonController {
         File saveFile = new File(basePath + File.separator + saveFileName);
         try {
             fileUpload.transferTo(saveFile);
+            FileUtils.copyFile(saveFile, new File("D:" + File.separator + "imgFile" + File.separator + saveFileName));
             result.put("code", 1);
             result.put("fileName", saveFileName);
         } catch (Exception e) {
