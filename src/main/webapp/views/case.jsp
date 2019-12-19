@@ -222,8 +222,8 @@
         <tr>
             <td align="right"><label for="fileUpload">File</label></td>
             <td>
-                <input type="file" id="fileUpload" name="fileUpload" form="fileUploadForm" style="display: none;"/><span
-                    class="upBtn">Upload</span>
+                <input type="file" id="fileUpload" name="fileUpload" form="fileUploadForm" value="" style="display: none;"/>
+                <span class="upBtn">Upload</span>
                 <span class="tip"><em style="color: #f00; padding: 0 8px;">*</em>Only support .JPG、.PNG images.</span>
                 <input type="hidden" id="extra" name="extra">
             </td>
@@ -299,12 +299,15 @@
     var fileName = '';
     $('.upBtn').bind('click', function () {
         $('#fileUpload').click();
+        $('#fileUpload').reset();
+    });
+
+    $(function() {
         $('#fileUpload').on('change', function () {
             var value = $(this).val();
             if (fileName == value) {
                 return;
-            }
-            ;
+            };
             fileName = value;
             if (value && value.indexOf('.') > 0) {
                 let suffix = value.substring(value.indexOf('.') + 1).toLowerCase();
@@ -313,10 +316,12 @@
                         url: basePath + '/common/uploadFile',
                         type: 'post',
                         success: function (data) {
+                            data = JSON.parse(data)
                             if (data.code == 1) {
                                 $('.tip').empty().html(data.fileName);
                                 alert('success!');
                                 $('#extra').val(data.fileName);
+                                $('#fileUpload').empty();
                             } else {
                                 alert('Error!');
                             }
@@ -332,7 +337,7 @@
                 alert('Please select file!');
             }
         });
-    });
+    })
 </script>
 
 </body>

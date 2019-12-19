@@ -1,5 +1,6 @@
 package com.young.controller;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +35,8 @@ public class CommonController {
     }
 
     @RequestMapping("/uploadFile")
-    @ResponseBody
-    public Map uploadFile(MultipartFile fileUpload, HttpServletRequest request) {
+    //@ResponseBody
+    public void uploadFile(MultipartFile fileUpload, HttpServletRequest request, HttpServletResponse response) {
         Map result = new HashMap();
         String basePath = request.getServletContext().getRealPath("/data/");
         File temp = new File(basePath);
@@ -51,7 +54,15 @@ public class CommonController {
             e.printStackTrace();
             result.put("code", -1);
         }
-        return result;
+        //return result;
+        response.setContentType("text/html");
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.write(JSON.toJSONString(result));
     }
 
 

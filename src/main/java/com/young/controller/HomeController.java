@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class HomeController {
 
-    @RequestMapping("home")
+    @RequestMapping("marposs")
     public ModelAndView toSuccess(HttpServletRequest request, HttpServletResponse response) {
         return new ModelAndView("/index");
     }
